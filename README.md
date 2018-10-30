@@ -2,7 +2,6 @@
 Fundamentals of Speech Signal Processing at NTU 2018 Spring.
 
 # HW1
-
 ## ENVIRONMENT
 r06922002@linux6.csie.ntu.edu.tw
 
@@ -28,3 +27,24 @@ make
 
 ## RESULTS
 ![iteration_acc.png](https://github.com/JasonYao81000/DSP2018SPRING/blob/master/figures/iteration_acc.png)
+
+# HW2
+## ENVIRONMENT
+r06922002@linux3.csie.ntu.edu.tw
+
+## HOW TO EXECUTE
+```
+cd hw2_r06922002/
+bash 00_clean_all.sh
+bash 01_run_HCopy.sh
+bash 02_run_HCompV.sh
+bash 03_training.sh
+bash 04_testing.sh
+cat result/accuracy
+```
+
+## Run Baseline (40%)
+![hw2_baseline.png](https://github.com/JasonYao81000/DSP2018SPRING/blob/master/figures/hw2_baseline.png)
+
+## Imporve Accuracy (40%)
+![hw2_improved.png](https://github.com/JasonYao81000/DSP2018SPRING/blob/master/figures/hw2_improved.png)

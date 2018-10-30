@@ -48,3 +48,65 @@ cat result/accuracy
 
 ## Imporve Accuracy (40%)
 ![hw2_improved.png](https://github.com/JasonYao81000/DSP2018SPRING/blob/master/figures/hw2_improved.png)
+
+# HW3
+## ENVIRONMENT
+r06922002@linux3.csie.ntu.edu.tw
+
+## HOW TO COMPILE
+```
+cd hw3_r06922002/
+make clean
+copy TA’s bigram.lm, Big5-ZhuYin.map, testdata to ./hw3_r06922002/
+make MACHINE_TYPE=i686-m64 SRIPATH=/home/master/06/r06922002/DSP2018Spring/srilm-1.5.10 all
+```
+
+## HOW TO EXECUTE
+```
+cd hw3_r06922002/
+make clean
+copy TA’s bigram.lm, Big5-ZhuYin.map, testdata to ./r06922002/
+make MACHINE_TYPE=i686-m64 SRIPATH=/home/master/06/r06922002/DSP2018Spring/srilm-1.5.10 all
+make map
+make MACHINE_TYPE=i686-m64 SRIPATH=/home/master/06/r06922002/DSP2018Spring/srilm-1.5.10 run
+```
+
+## WHAT I HAVE DONE
+1. Segment corpus and all test data into characters
+```
+./separator_big5.pl corpus.txt > corpus_seg.txt
+./separator_big5.pl testdata/xx.txt > xx.txt
+```
+2. Train character-based bigram LM (Bigram)
+```
+#!/bin/bash
+SRIPATH="/home/master/06/r06922002/DSP2018Spring/srilm-1.5.10"
+SRIPATH_BIN="$SRIPATH/bin/i686-m64"
+$SRIPATH_BIN/ngram-count -text corpus_seg.txt -write lm.cnt -order 2
+$SRIPATH_BIN/ngram-count -read lm.cnt -lm bigram.lm -unk -order 2
+```
+3. Generate ZhuYin-Big5.map from Big5-ZhuYin.map
+```
+python mapping.py Big5-ZhuYin.map ZhuYin-Big5.map
+```
+or
+```
+make map
+```
+4. Using disambig to decode testdata/xx.txt (Bigram)
+```
+#!/bin/bash
+SRIPATH="/home/master/06/r06922002/DSP2018Spring/srilm-1.5.10"
+SRIPATH_BIN="$SRIPATH/bin/i686-m64"
+$SRIPATH_BIN/disambig -text testdata/xx.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > result1/xx.txt
+```
+5. Using mydisambig to decode testdata/xx.txt (Bigram)
+```
+./mydisambig -text testdata/xx.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > result2/xx.txt
+```
+or
+```
+make run
+```
+6. Results (Bigram)
+![hw3_results_comparison.png](https://github.com/JasonYao81000/DSP2018SPRING/blob/master/figures/hw3_results_comparison.png)

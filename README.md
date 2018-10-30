@@ -1,7 +1,14 @@
 # DSP2018SPRING
 Fundamentals of Speech Signal Processing at NTU 2018 Spring.
 
-***
+This course has three homeworks.
+
+# Table of Contents
+<!--ts-->
+   1. [Homework 1](https://github.com/JasonYao81000/DSP2018SPRING#homework-1)
+   2. [Homework 2](https://github.com/JasonYao81000/DSP2018SPRING#homework-2)
+   3. [Homework 3](https://github.com/JasonYao81000/DSP2018SPRING#homework-3)
+<!--te-->
 
 # Homework 1
 
